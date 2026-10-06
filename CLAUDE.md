@@ -4,7 +4,9 @@ Champ de saisie mathématique React (`MathInput`) et son clavier virtuel, publi�
 `react-math-keyboard`, licence ISC). Bâti sur `mathquill4keyboard`, un fork de MathQuill (virgule décimale, `×` au lieu
 de `·`). Consommé par `../sciencelive-front` ; éditeur Heureux Hasard. Le `README.md`, en anglais, est la documentation
 publique des props. Vue d'ensemble dans le workspace `github.com/heureuxhasard/monorepo`, qui clone ce dépôt dans un
-sous-dossier (`make bootstrap`) : `../README.md`, `../ARCHITECTURE-SYSTEME.md`, `../CLAUDE.md`.
+sous-dossier (`make bootstrap`) : `../README.md`, `../ARCHITECTURE-SYSTEME.md`, `../CLAUDE.md`. Le LaTeX exact produit
+par chaque touche, ce que les VEA de `math-exercises` en comprennent et les anomalies connues :
+`../docs/react-math-keyboard/README.md` (à mettre à jour quand une touche change).
 
 ## Commandes
 
@@ -56,6 +58,9 @@ Publication (d'après l'historique) : un commit de version seul (`2.0.19`), puis
    `allKeysProps` (`keys.ts`), un nouveau groupe à `KeyGroupIds` et `keyGroups` (`keyGroup.ts`).
 3. Vérifier dans Storybook, publier (sur demande), mettre à jour le front, puis **recopier l'identifiant** dans
    `../math-exercises/src/types/keyIds.ts`.
+4. Relever le LaTeX que la touche produit (`mf.latex()`, souvent différent du `content` : `\leq` → `\le`, `*` →
+   `\times`, accolades ajoutées), l'ajouter à la table de `../docs/react-math-keyboard/README.md` §4 et vérifier que
+   le parser de `math-exercises` le comprend (§5).
 
 Un `KeyId` ne se renomme ni ne se supprime : les générateurs de `math-exercises` les citent (`getKeys`) et le back en
 enregistre en base (`GeneratorForm.keys`). Écart constaté le 5 octobre 2026 : `dm`, `km`, `km2`, `litre`, `m2`, `meter`,
