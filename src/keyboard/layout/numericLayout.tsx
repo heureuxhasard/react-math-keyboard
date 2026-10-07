@@ -16,6 +16,7 @@ export type NumericLayoutProps = {
   parenthesisShouldNotProduceLeftRight?: boolean;
   tabShouldSkipKeys?: boolean;
   timesShouldProduceStar?: boolean;
+  timesShouldProduceCdot?: boolean;
 };
 
 export const NumericLayout = ({
@@ -28,6 +29,7 @@ export const NumericLayout = ({
   lang,
   parenthesisShouldNotProduceLeftRight,
   timesShouldProduceStar,
+  timesShouldProduceCdot,
   tabShouldSkipKeys,
 }: NumericLayoutProps) => {
   const hideToolbar = !!toolbarKeys && !toolbarKeys.length;
@@ -77,6 +79,11 @@ export const NumericLayout = ({
           {timesShouldProduceStar ? (
             <Key
               {...KeysPropsMap.get("star")!}
+              tabShouldSkipKeys={tabShouldSkipKeys}
+            />
+          ) : timesShouldProduceCdot ? (
+            <Key
+              {...KeysPropsMap.get("cdot")!}
               tabShouldSkipKeys={tabShouldSkipKeys}
             />
           ) : (

@@ -49,6 +49,8 @@ export type MathInputProps = {
   scrollTriesToShowLastElement?: boolean;
   closeKeyboardOnGoBack?: boolean;
   timesShouldProduceStar?: boolean;
+  /** Multiplication key writes \cdot ("3·x", Belgian notation) instead of \times */
+  timesShouldProduceCdot?: boolean;
   isPaddingPersistent?: boolean;
 };
 
@@ -105,6 +107,7 @@ export const MathInput = ({
   scrollTriesToShowLastElement = false,
   closeKeyboardOnGoBack = false,
   timesShouldProduceStar = false,
+  timesShouldProduceCdot = false,
   isPaddingPersistent = false,
 }: MathInputProps) => {
   const [loaded, setLoaded] = useState(false);
@@ -410,6 +413,7 @@ export const MathInput = ({
                 parenthesisShouldNotProduceLeftRight
               }
               timesShouldProduceStar={timesShouldProduceStar}
+              timesShouldProduceCdot={timesShouldProduceCdot}
               tabShouldSkipKeys={tabShouldSkipKeys}
             />
           )}

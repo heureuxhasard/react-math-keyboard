@@ -37,6 +37,19 @@ export const operationKeysProps: KeyProps[] = [
     keypressId: "*",
   },
   {
+    // Multiplication dot (Belgian notation "3·x"); needs mathquill4keyboard >= 0.10.12
+    id: "cdot",
+    label: "\\cdot",
+    labelType: "tex",
+
+    mathfieldInstructions: {
+      content: "cdot",
+      method: "cmd",
+    },
+    groups: ["basicOperations"],
+    keypressId: "*",
+  },
+  {
     id: "star",
     label: "\\ast",
     labelType: "tex",

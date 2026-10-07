@@ -63,6 +63,7 @@ export type KeyId =
   | "plus"
   | "minus"
   | "times"
+  | "cdot"
   | "frac"
   | "obelus"
   | "sqrt"

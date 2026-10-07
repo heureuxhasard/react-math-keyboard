@@ -20,6 +20,7 @@ export type KeyboardProps = {
   parenthesisShouldNotProduceLeftRight?: boolean;
   tabShouldSkipKeys?: boolean;
   timesShouldProduceStar?: boolean;
+  timesShouldProduceCdot?: boolean;
 };
 
 export const Keyboard = ({
@@ -32,6 +33,7 @@ export const Keyboard = ({
   lang,
   parenthesisShouldNotProduceLeftRight,
   timesShouldProduceStar,
+  timesShouldProduceCdot,
   tabShouldSkipKeys,
 }: KeyboardProps) => {
   const mathfield = useContext(MathFieldContext);
@@ -77,6 +79,7 @@ export const Keyboard = ({
             parenthesisShouldNotProduceLeftRight
           }
           timesShouldProduceStar={timesShouldProduceStar}
+          timesShouldProduceCdot={timesShouldProduceCdot}
           tabShouldSkipKeys={tabShouldSkipKeys}
         />
       )}

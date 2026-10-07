@@ -36,6 +36,25 @@ export const NoKeys: Story = {
   ),
 };
 
+// Belgian notation: the multiplication key writes \cdot ("3·x")
+const CdotInput = () => {
+  const [value, setValue] = useState("");
+  return (
+    <>
+      <MathInput
+        setValue={setValue}
+        lang="fr"
+        numericToolbarKeys={["cdot", "times"]}
+        timesShouldProduceCdot={true}
+      />
+      <p>{value}</p>
+    </>
+  );
+};
+export const MultiplicationDot: Story = {
+  render: () => <CdotInput />,
+};
+
 const SomeKeysInput = () => {
   const [value, setValue] = useState("");
   const mf = useRef<MathField>();
