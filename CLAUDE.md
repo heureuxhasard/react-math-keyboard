@@ -3,7 +3,8 @@
 Champ de saisie mathématique React (`MathInput`) et son clavier virtuel, publié sur npm (paquet public
 `react-math-keyboard`, licence ISC). Bâti sur `mathquill4keyboard`, un fork de MathQuill (virgule décimale, `×` au lieu
 de `·`). Consommé par `../sciencelive-front` ; éditeur Heureux Hasard. Le `README.md`, en anglais, est la documentation
-publique des props. Vue d'ensemble dans le workspace `github.com/heureuxhasard/monorepo`, qui clone ce dépôt dans un
+publique des props ; `DOCUMENTATION.md` la documentation technique (structure, mécanismes, props absentes du README,
+publication, points d'attention). Vue d'ensemble dans le workspace `github.com/heureuxhasard/monorepo`, qui clone ce dépôt dans un
 sous-dossier (`make bootstrap`) : `../README.md`, `../ARCHITECTURE-SYSTEME.md`, `../CLAUDE.md`. Le LaTeX exact produit
 par chaque touche, ce que les VEA de `math-exercises` en comprennent et les anomalies connues :
 `../docs/react-math-keyboard/README.md` (à mettre à jour quand une touche change).
