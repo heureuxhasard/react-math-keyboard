@@ -218,6 +218,22 @@ export const MathInput = ({
     return () => inputElement?.removeEventListener("keypress", exec);
   }, [forbidOtherKeyboardKeys, numericToolbarKeys, loaded]);
 
+  // Physical "*" key: MathQuill writes \times; with timesShouldProduceCdot it writes \cdot
+  // instead, like the on-screen multiplication key (Belgian notation "3·7").
+  useEffect(() => {
+    if (!timesShouldProduceCdot || !loaded) return;
+    const exec = (event: KeyboardEvent) => {
+      if (event.key !== "*") return;
+      event.preventDefault();
+      mathfield.current?.cmd("\\cdot");
+    };
+    const inputElement = document.getElementById(
+      `mq-keyboard-${idCounter.current}-container`,
+    );
+    inputElement?.addEventListener("keypress", exec);
+    return () => inputElement?.removeEventListener("keypress", exec);
+  }, [timesShouldProduceCdot, loaded]);
+
   useEffect(() => {
     if (!forbidPaste || !loaded) return;
     const inputElement = document.getElementById(
