@@ -55,6 +55,28 @@ export const MultiplicationDot: Story = {
   render: () => <CdotInput />,
 };
 
+// Belgian notation: the division key writes ":" ("12 : 3")
+const ColonInput = () => {
+  const [value, setValue] = useState("");
+  return (
+    <>
+      <MathInput
+        setValue={setValue}
+        lang="fr"
+        numericToolbarKeys={["colon", "cdot"]}
+        divisionFormat="obelus"
+        timesShouldProduceCdot={true}
+        obelusShouldProduceColon={true}
+        forbidOtherKeyboardKeys={true}
+      />
+      <p>{value}</p>
+    </>
+  );
+};
+export const DivisionColon: Story = {
+  render: () => <ColonInput />,
+};
+
 const SomeKeysInput = () => {
   const [value, setValue] = useState("");
   const mf = useRef<MathField>();

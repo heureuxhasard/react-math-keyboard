@@ -51,6 +51,8 @@ export type MathInputProps = {
   timesShouldProduceStar?: boolean;
   /** Multiplication key writes \cdot ("3·x", Belgian notation) instead of \times */
   timesShouldProduceCdot?: boolean;
+  /** Division key writes ":" ("12 : 3", Belgian notation) instead of \div */
+  obelusShouldProduceColon?: boolean;
   isPaddingPersistent?: boolean;
 };
 
@@ -108,6 +110,7 @@ export const MathInput = ({
   closeKeyboardOnGoBack = false,
   timesShouldProduceStar = false,
   timesShouldProduceCdot = false,
+  obelusShouldProduceColon = false,
   isPaddingPersistent = false,
 }: MathInputProps) => {
   const [loaded, setLoaded] = useState(false);
@@ -206,6 +209,8 @@ export const MathInput = ({
         }),
       );
 
+    // physical ":" accepted with the on-screen colon key
+    if (obelusShouldProduceColon) keys.push(":");
     keys = keys.filter((e) => e !== undefined);
 
     const exec = (event: KeyboardEvent) => {
@@ -216,7 +221,12 @@ export const MathInput = ({
     );
     inputElement?.addEventListener("keypress", exec);
     return () => inputElement?.removeEventListener("keypress", exec);
-  }, [forbidOtherKeyboardKeys, numericToolbarKeys, loaded]);
+  }, [
+    forbidOtherKeyboardKeys,
+    numericToolbarKeys,
+    obelusShouldProduceColon,
+    loaded,
+  ]);
 
   // Physical "*" key: MathQuill writes \times; with timesShouldProduceCdot it writes \cdot
   // instead, like the on-screen multiplication key (Belgian notation "3·7").
@@ -430,6 +440,7 @@ export const MathInput = ({
               }
               timesShouldProduceStar={timesShouldProduceStar}
               timesShouldProduceCdot={timesShouldProduceCdot}
+              obelusShouldProduceColon={obelusShouldProduceColon}
               tabShouldSkipKeys={tabShouldSkipKeys}
             />
           )}

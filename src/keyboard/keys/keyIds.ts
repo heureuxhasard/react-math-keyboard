@@ -66,6 +66,7 @@ export type KeyId =
   | "cdot"
   | "frac"
   | "obelus"
+  | "colon"
   | "sqrt"
   | "sqrtCub"
   | "square"

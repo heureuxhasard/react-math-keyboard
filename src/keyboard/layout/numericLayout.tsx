@@ -17,6 +17,7 @@ export type NumericLayoutProps = {
   tabShouldSkipKeys?: boolean;
   timesShouldProduceStar?: boolean;
   timesShouldProduceCdot?: boolean;
+  obelusShouldProduceColon?: boolean;
 };
 
 export const NumericLayout = ({
@@ -30,6 +31,7 @@ export const NumericLayout = ({
   parenthesisShouldNotProduceLeftRight,
   timesShouldProduceStar,
   timesShouldProduceCdot,
+  obelusShouldProduceColon,
   tabShouldSkipKeys,
 }: NumericLayoutProps) => {
   const hideToolbar = !!toolbarKeys && !toolbarKeys.length;
@@ -95,6 +97,11 @@ export const NumericLayout = ({
           {divisionFormat === "fraction" ? (
             <Key
               {...KeysPropsMap.get("frac")!}
+              tabShouldSkipKeys={tabShouldSkipKeys}
+            />
+          ) : obelusShouldProduceColon ? (
+            <Key
+              {...KeysPropsMap.get("colon")!}
               tabShouldSkipKeys={tabShouldSkipKeys}
             />
           ) : (

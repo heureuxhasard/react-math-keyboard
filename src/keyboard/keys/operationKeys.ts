@@ -74,6 +74,19 @@ export const operationKeysProps: KeyProps[] = [
     keypressId: "/",
   },
   {
+    // Division written with a colon (Belgian notation "12 : 3")
+    id: "colon",
+    label: ":",
+    labelType: "tex",
+    groups: ["basicOperations"],
+
+    mathfieldInstructions: {
+      content: ":",
+      method: "write",
+    },
+    keypressId: ":",
+  },
+  {
     id: "sqrt",
     label: "\\sqrt{\\ }",
     labelType: "tex",
