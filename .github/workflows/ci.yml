@@ -1,0 +1,41 @@
+# Continuous integration: build the package on every pull request and on main.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A new push cancels the previous run of the same pull request or branch.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and type check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Build
+        run: npm run build
+      # Not blocking yet: existing type errors are reported in the run summary.
+      - name: Type check (non-blocking)
+        run: |
+          set +e
+          npx tsc --noEmit > tsc.log 2>&1
+          errors=$(grep -c "error TS" tsc.log)
+          { echo "### Type check: $errors error(s)"; echo '```'; head -30 tsc.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          [ "$errors" -gt 0 ] && echo "::warning::$errors type error(s) (not blocking yet)"
+          exit 0
